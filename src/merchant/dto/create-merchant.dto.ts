@@ -1,13 +1,7 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Types } from 'mongoose';
 
 export class CreateMerchantDto {
-  @ApiProperty({ type: Types.ObjectId, required: false, readOnly: true })
-  @IsString()
-  @IsNotEmpty()
-  userId: Types.ObjectId;
-
   @ApiProperty({ required: true, type: String, example: 'John Doe' })
   @IsString()
   @IsNotEmpty()

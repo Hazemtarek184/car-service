@@ -18,7 +18,7 @@ class Product {
 
 @Schema({ timestamps: true })
 export class Merchant extends Document {
-  @Prop({ type: Types.ObjectId, ref: 'User', required: true })
+  @Prop({ type: Types.ObjectId, ref: 'User', required: false })
   userId: Types.ObjectId;
 
   @Prop({ required: true })

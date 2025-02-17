@@ -1,13 +1,7 @@
 import { IsBoolean, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Types } from 'mongoose';
 
 export class CreateDriverDto {
-  @ApiProperty({ example: '66b99b9b9b9b9b9b9b9b9b9b', description: 'User ID' })
-  @IsString()
-  @IsNotEmpty()
-  userId: Types.ObjectId;
-
   @ApiProperty({ example: 'John Doe', description: 'Name' })
   @IsString()
   @IsNotEmpty()

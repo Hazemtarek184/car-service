@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { MerchantService } from './merchant.service';
 import { CreateMerchantDto, AddProductDto } from './dto/create-merchant.dto';
@@ -15,21 +16,22 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { Role } from '../auth/enums/roles.enum';
-import { ApiTags, ApiOperation } from '@nestjs/swagger';
+import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { Types } from 'mongoose';
 
 @ApiTags('Merchants')
 @Controller('merchants')
 @UseGuards(JwtAuthGuard, RolesGuard)
+@ApiBearerAuth()
 export class MerchantController {
   constructor(private readonly merchantService: MerchantService) {}
 
   @Post()
   @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Create merchant profile' })
-  create(@Body() createMerchantDto: CreateMerchantDto) {
+  create(@Body() createMerchantDto: CreateMerchantDto, @Request() req) {
     return this.merchantService.createMerchantProfile(
-      createMerchantDto.userId,
+      req.user._id,
       createMerchantDto,
     );
   }

@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { DriversService } from './driver.service';
 import { CreateDriverDto } from './dto/create-driver.dto';
@@ -36,9 +37,9 @@ export class DriverController {
     status: 201,
     description: 'Driver profile created successfully',
   })
-  create(@Body() createDriverDto: CreateDriverDto) {
+  create(@Body() createDriverDto: CreateDriverDto, @Request() req) {
     return this.driversService.createDriverProfile(
-      createDriverDto.userId,
+      req.user._id,
       createDriverDto,
     );
   }

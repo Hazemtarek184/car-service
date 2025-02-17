@@ -12,14 +12,16 @@ import { MailModule } from 'src/mail/mail.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { MerchantModule } from 'src/merchant/merchant.module';
+import { JwtStrategy } from './strategies/jwt.strategy';
 @Module({
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy],
   controllers: [AuthController],
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
     PassportModule,
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     MongooseModule.forFeature([{ name: Driver.name, schema: DriverSchema }]),
     JwtModule.registerAsync({
