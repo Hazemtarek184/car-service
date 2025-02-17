@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MailModule } from './mail/mail.module';
 import { DriverModule } from './driver/driver.module';
+import { MerchantModule } from './merchant/merchant.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { DriverModule } from './driver/driver.module';
     AuthModule,
     MailModule,
     DriverModule,
+    MerchantModule,
   ],
   controllers: [AppController],
   providers: [AppService],

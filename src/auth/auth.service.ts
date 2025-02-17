@@ -17,6 +17,7 @@ import { Role } from './enums/roles.enum';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { User } from 'src/users/entities/users.entity';
 import { DriversService } from 'src/driver/driver.service';
+import { MerchantService } from 'src/merchant/merchant.service';
 
 @Injectable()
 export class AuthService {
@@ -25,6 +26,7 @@ export class AuthService {
     private jwtService: JwtService,
     private mailService: MailService,
     private driversService: DriversService,
+    private merchantService: MerchantService,
   ) {}
 
   private generateJwtToken(user: User) {
@@ -81,6 +83,15 @@ export class AuthService {
       await this.driversService.createDriverProfile(
         user._id as Types.ObjectId,
         signupDto.driverInfo,
+      );
+    }
+    if (user.role === Role.MERCHANT) {
+      if (!signupDto.merchantInfo) {
+        throw new BadRequestException('Merchant information is required');
+      }
+      await this.merchantService.createMerchantProfile(
+        user._id as Types.ObjectId,
+        signupDto.merchantInfo,
       );
     }
 

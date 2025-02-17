@@ -11,6 +11,7 @@ import { DriverModule } from 'src/driver/driver.module';
 import { MailModule } from 'src/mail/mail.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
+import { MerchantModule } from 'src/merchant/merchant.module';
 @Module({
   providers: [AuthService],
   controllers: [AuthController],
@@ -31,6 +32,7 @@ import { PassportModule } from '@nestjs/passport';
     }),
     MailModule,
     DriverModule,
+    MerchantModule,
   ],
 
   exports: [AuthService],

@@ -11,6 +11,7 @@ import { Role } from 'src/auth/enums/roles.enum';
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { CreateDriverDto } from 'src/driver/dto/create-driver.dto';
+import { CreateMerchantDto } from 'src/merchant/dto/create-merchant.dto';
 
 export class SignupDto {
   @ApiProperty({ example: 'John Doe', description: 'Name' })
@@ -39,4 +40,10 @@ export class SignupDto {
   @ValidateNested()
   @Type(() => CreateDriverDto)
   driverInfo?: CreateDriverDto;
+
+  @ApiProperty({ required: false, type: CreateMerchantDto })
+  @IsOptional()
+  @ValidateNested()
+  @Type(() => CreateMerchantDto)
+  merchantInfo?: CreateMerchantDto;
 }
