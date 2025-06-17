@@ -27,7 +27,7 @@ export class MerchantController {
   constructor(private readonly merchantService: MerchantService) {}
 
   @Post()
-  @Roles(Role.ADMIN)
+  // @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Create merchant profile' })
   create(@Body() createMerchantDto: CreateMerchantDto, @Request() req) {
     return this.merchantService.createMerchantProfile(

@@ -31,7 +31,7 @@ export class DriverController {
   constructor(private readonly driversService: DriversService) {}
 
   @Post()
-  @Roles(Role.ADMIN)
+  // @Roles(Role.ADMIN)
   @ApiOperation({ summary: 'Create a driver profile' })
   @ApiResponse({
     status: 201,
